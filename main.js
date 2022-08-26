@@ -30,8 +30,6 @@ function activateMenuAtCurrentSection (section) {
   const sectionEndsAt = sectionTop + sectionHeight
   const sectionEndPassedTargetLine = sectionEndsAt <= targetLine
  
-  const navigationEl = document.getElementById('navigation');
- 
   //limites da seção
   const sectionBoundaries =
     sectionTopReachOrPassedTargetline && !sectionEndPassedTargetLine
@@ -46,6 +44,7 @@ function activateMenuAtCurrentSection (section) {
 }
  
 function showNavOnScroll() {
+  const navigationEl = document.getElementById('navigation');
   if (scrollY > 0) {
     navigationEl.classList.add('scroll')
   } 
