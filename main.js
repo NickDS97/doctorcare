@@ -1,17 +1,16 @@
-// COMENTÁRIOS
 window.addEventListener('scroll', onScroll)
-
+ 
 onScroll()
 function onScroll () {
   showNavOnScroll()
   showBackToTopButtonOnScroll()
-
+ 
   activateMenuAtCurrentSection(home)
   activateMenuAtCurrentSection(services)
   activateMenuAtCurrentSection(about)
   activateMenuAtCurrentSection(contact)
 }
-
+ 
 function activateMenuAtCurrentSection (section) {
   const targetLine = scrollY + innerHeight / 2
  
@@ -25,34 +24,36 @@ function activateMenuAtCurrentSection (section) {
   
   // o topo da seção chegou ou ultrapassou a linha alvo
   const sectionTopReachOrPassedTargetline = targetLine >= sectionTop
-
+ 
   // verificar se a base está abaixo da linha alvo
-
+ 
   const sectionEndsAt = sectionTop + sectionHeight
   const sectionEndPassedTargetLine = sectionEndsAt <= targetLine
-
+ 
+  const navigationEl = document.getElementById('navigation');
+ 
   //limites da seção
   const sectionBoundaries =
     sectionTopReachOrPassedTargetline && !sectionEndPassedTargetLine
-
+ 
   const sectionId = section.getAttribute ('id')
   const menuElement = document.querySelector (`.menu a[href*=${sectionId}]`)
-
+ 
   menuElement.classList.remove ('active')
   if (sectionBoundaries) {
     menuElement.classList.add('active')
   }
 }
-
+ 
 function showNavOnScroll() {
   if (scrollY > 0) {
-    navigation.classList.add('scroll')
+    navigationEl.classList.add('scroll')
   } 
   else {
-    navigation.classList.remove('scroll')
+    navigationEl.classList.remove('scroll')
   }
 }
-
+ 
 function showBackToTopButtonOnScroll() {
   if (scrollY > 550) {
     backToTopButton.classList.add('show')
@@ -61,15 +62,15 @@ function showBackToTopButtonOnScroll() {
     backToTopButton.classList.remove('show')
   }
 }
-
+ 
 function openMenu () {
   document.body.classList.add('menu-expanded')
 }
-
+ 
 function closeMenu () {
   document.body.classList.remove('menu-expanded')
 }
-
+ 
 ScrollReveal({
   origin: 'top',
   distance: '30px',
@@ -84,4 +85,3 @@ ScrollReveal({
 #about,
 #about header,
 #about .content`)
-
